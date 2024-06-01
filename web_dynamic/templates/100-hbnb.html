@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="../static/styles/3-header.css?{{cache_id}}">
   <link rel="stylesheet" type="text/css" href="../static/styles/3-footer.css?{{cache_id}}">
   <link rel="stylesheet" type="text/css" href="../static/styles/6-filters.css?{{cache_id}}">
-  <link type="text/css" rel="stylesheet" href="../static/styles/8-places.css?{{cache_id}}">
+  <link type="text/css" rel="stylesheet" href="../static/styles/100-places.css?{{cache_id}}">
   <link rel="icon" href="../static/images/icon.png" />
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="../static/scripts/100-hbnb.js?{{cache_id}}"></script>
@@ -24,33 +24,28 @@
       <div class="locations">
         <h3>States</h3>
         <h4>&nbsp;</h4>
-        <div class="popover">
-          <ul>
-            {% for state in states %}
-            <li>
-              <h2><input type="checkbox" id="state_filter" data-id="{{state[0].id}}" data-name="{{state[0].name}}"> {{ state[0].name }}:</h2>
-              <ul>
-                {% for city in state[1] %}
-                <li><input type="checkbox" id="city_filter" data-id="{{city.id}}"
-                    data-name="{{city.name}}">{{ city.name }}</li>
-                {% endfor %}
-              </ul>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
+        <ul class="popover">
+          {% for state in states %}
+          <li>
+            <h2><input type="checkbox" id="state_filter" data-id="{{state[0].id}}" data-name="{{state[0].name}}"> {{ state[0].name }}:</h2>
+            <ul>
+              {% for city in state[1] %}
+              <li><input type="checkbox" id="city_filter" data-id="{{city.id}}"
+                  data-name="{{city.name}}">{{ city.name }}</li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% endfor %}
+        </ul>
       </div>
       <div class="amenities">
         <h3>Amenities</h3>
         <h4>&nbsp;</h4>
-        <div class="popover">
-          <ul>
-            {% for amenity in amenities %}
-            <li><input type="checkbox" id="amenity_filter" data-id="{{amenity.id}}"
-                data-name="{{amenity.name}}">{{ amenity.name }}</li>
-            {% endfor %}
-          </ul>
-        </div>
+        <ul class="popover">
+          {% for amenity in amens|sort(attribute='name') %}
+          <LI><INPUT data-id="{{ amenity.id }}" data-name="{{ amenity.name }}" style="margin-right: 10px;" type="checkbox" />{{ amenity.name }}</LI>
+          {% endfor %}
+        </ul>
       </div>
       <button type="button">Search</button>
     </section>
